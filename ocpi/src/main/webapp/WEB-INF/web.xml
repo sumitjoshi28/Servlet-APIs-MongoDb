@@ -1,0 +1,26 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+	<servlet>
+		<servlet-name>GetVersionDetails</servlet-name>
+		<servlet-class>Servlets.GetVersionDetails</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>StoreVersionDetails</servlet-name>
+		<servlet-class>Servlets.StoreVersionDetails</servlet-class>
+	</servlet>
+  <servlet-mapping>
+    <servlet-name>GetVersionDetails</servlet-name>
+    <url-pattern>/versions</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>StoreVersionDetails</servlet-name>
+    <url-pattern>/storeVersions</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+  		<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
