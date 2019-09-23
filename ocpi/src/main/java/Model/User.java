@@ -1,9 +1,9 @@
 package Model;
 
 public class User {
-	private String id = "5d7febfbd691c21ee92970eb";
-	private String version = "2.2";
-	private String url = "server.com/ocpi/cpo";
+	private String id;
+	private String version;
+	private String url;
 
 	public String getId() {
 		return id;

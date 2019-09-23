@@ -12,7 +12,9 @@ import com.mongodb.MongoClient;
 import Converter.UserConverter;
 import Model.User;
 
-public class DbConnection {
+public class DbConnection
+
+{
 
 	public List<User> readAll() throws UnknownHostException
 
@@ -24,7 +26,9 @@ public class DbConnection {
 		System.out.println("Connected to Mongo Db");
 
 		List<User> data = new ArrayList<User>();
-		DBCursor cursor = coll.find();
+		 DBObject allQuery = new BasicDBObject();
+		 DBObject removeIdProjection = new BasicDBObject("_id", 0);
+		 DBCursor cursor = coll.find(allQuery,removeIdProjection);
 		while (cursor.hasNext()) {
 			DBObject doc = cursor.next();
 			User user = UserConverter.toUser(doc);
