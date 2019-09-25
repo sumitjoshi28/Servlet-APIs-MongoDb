@@ -1,4 +1,4 @@
-package Servlets;
+package VersionModule;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +18,10 @@ public class StoreVersionDetails extends HttpServlet {
 
 		String version = request.getParameter("version");
 		String url = request.getParameter("url");
+		
+		DbConnection dbConn = new DbConnection();
+		String token = dbConn.readToken();
+		token = request.getParameter("token");
 
 		if ((version == null || version.equals("")) || (url == null || url.equals(""))) {
 
@@ -26,6 +30,15 @@ public class StoreVersionDetails extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			out.print("Mandatory parameters are missing");
 			out.flush();
+		}
+		else if((token == null || token.equals(""))){
+			
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			response.setCharacterEncoding("UTF-8");
+			out.print("Unauthorized Access, token is missing");
+			out.flush();
+			
 		}
 
 		else {
@@ -45,4 +58,5 @@ public class StoreVersionDetails extends HttpServlet {
 
 		}
 	}
+	
 }

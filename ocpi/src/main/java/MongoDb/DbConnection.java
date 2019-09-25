@@ -19,16 +19,15 @@ public class DbConnection
 	public List<User> readAll() throws UnknownHostException
 
 	{
-
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		DB db = mongoClient.getDB("sumit");
 		DBCollection coll = db.getCollection("data");
 		System.out.println("Connected to Mongo Db");
 
 		List<User> data = new ArrayList<User>();
-		 DBObject allQuery = new BasicDBObject();
-		 DBObject removeIdProjection = new BasicDBObject("_id", 0);
-		 DBCursor cursor = coll.find(allQuery,removeIdProjection);
+		DBObject allQuery = new BasicDBObject();
+		DBObject removeIdProjection = new BasicDBObject("_id", 0);
+		DBCursor cursor = coll.find(allQuery, removeIdProjection);
 		while (cursor.hasNext()) {
 			DBObject doc = cursor.next();
 			User user = UserConverter.toUser(doc);
@@ -52,6 +51,36 @@ public class DbConnection
 		coll.insert(document);
 
 		return document;
+
+	}
+
+	public DBObject createToken(User user) throws UnknownHostException {
+		MongoClient mongoClient = new MongoClient();
+		DB db = mongoClient.getDB("sumit");
+		DBCollection coll = db.getCollection("token");
+		System.out.println("Connected to Mongo Db");
+
+		BasicDBObject document = new BasicDBObject();
+		document.put("token", user.getCpoId());
+		coll.insert(document);
+
+		return document;
+
+	}
+
+	public String readToken() throws UnknownHostException {
+		MongoClient mongoClient = new MongoClient();
+		DB db = mongoClient.getDB("sumit");
+		DBCollection coll = db.getCollection("token");
+		System.out.println("Connected to Mongo Db");
+
+		DBObject allQuery = new BasicDBObject();
+		DBObject removeIdProjection = new BasicDBObject("_id", 0);
+		DBCursor cursor = coll.find(allQuery, removeIdProjection);
+		String stored = (String) cursor.one().get("token");
+		System.out.println("Stored token is " + stored);
+
+		return stored;
 
 	}
 

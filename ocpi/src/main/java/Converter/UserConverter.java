@@ -26,6 +26,7 @@ public class UserConverter {
 		User user = new User();
 		user.setVersion((String) doc.get("version"));
 		user.setUrl((String) doc.get("url"));
+		user.setCpoId((String)doc.get("cpoId"));
 //		ObjectId id = (ObjectId) doc.get("_id");
 //		user.setId(id.toString());
 		return user;

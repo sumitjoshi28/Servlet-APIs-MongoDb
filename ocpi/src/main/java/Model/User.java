@@ -4,6 +4,15 @@ public class User {
 	private String id;
 	private String version;
 	private String url;
+	private String cpoId;
+
+	public String getCpoId() {
+		return cpoId;
+	}
+
+	public void setCpoId(String cpoId) {
+		this.cpoId = cpoId;
+	}
 
 	public String getId() {
 		return id;
