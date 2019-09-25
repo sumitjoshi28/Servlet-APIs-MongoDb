@@ -6,17 +6,17 @@
 	
 	<servlet>
 		<servlet-name>GetVersionDetails</servlet-name>
-		<servlet-class>Servlets.GetVersionDetails</servlet-class>
+		<servlet-class>VersionModule.GetVersionDetails</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>StoreVersionDetails</servlet-name>
-		<servlet-class>Servlets.StoreVersionDetails</servlet-class>
+		<servlet-class>VersionModule.StoreVersionDetails</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>StoreToken</servlet-name>
 		<display-name>StoreToken</display-name>
 		<description></description>
-		<servlet-class>Servlets.StoreToken</servlet-class>
+		<servlet-class>VersionModule.StoreToken</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVersionDetails</servlet-name>

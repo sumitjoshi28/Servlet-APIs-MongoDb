@@ -21,9 +21,9 @@ public class StoreVersionDetails extends HttpServlet {
 		
 		DbConnection dbConn = new DbConnection();
 		String token = dbConn.readToken();
-		token = request.getParameter("token");
+		String passtoken = request.getParameter("token");
 
-		if ((version == null || version.equals("")) || (url == null || url.equals(""))) {
+		if ((version == null || version.equals("")) || (url == null || url.equals(""))){
 
 			PrintWriter out = response.getWriter();
 			response.setContentType("text/html");
@@ -31,18 +31,9 @@ public class StoreVersionDetails extends HttpServlet {
 			out.print("Mandatory parameters are missing");
 			out.flush();
 		}
-		else if((token == null || token.equals(""))){
+		
+		else if((passtoken != null && passtoken.equals(token))){
 			
-			PrintWriter out = response.getWriter();
-			response.setContentType("text/html");
-			response.setCharacterEncoding("UTF-8");
-			out.print("Unauthorized Access, token is missing");
-			out.flush();
-			
-		}
-
-		else {
-
 			User user = new User();
 			user.setVersion(version);
 			user.setUrl(url);
@@ -56,6 +47,18 @@ public class StoreVersionDetails extends HttpServlet {
 			out.print("Successfully added to the database");
 			out.flush();
 
+			
+		}
+
+		else {
+			
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			response.setCharacterEncoding("UTF-8");
+			out.print("Unauthorized Access , token not found");
+			out.flush();
+
+			
 		}
 	}
 	

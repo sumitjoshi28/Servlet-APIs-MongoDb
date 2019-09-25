@@ -19,11 +19,9 @@ public class GetVersionDetails extends HttpServlet {
 
 		DbConnection dbConn = new DbConnection();
 		String token = dbConn.readToken();
-		System.out.println("Fetched Token is " + token);
-		token = request.getParameter("token");
-		System.out.println("Now Token is " + token);
+		String passToken = request.getParameter("token");
 
-		if (token != null)
+		if (passToken != null && passToken.equals(token))
 
 		{
 			List<User> user = dbConn.readAll();
