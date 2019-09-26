@@ -84,4 +84,30 @@ public class DbConnection
 
 	}
 
+	public DBObject getSession() throws UnknownHostException {
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		DB db = mongoClient.getDB("sumit");
+		DBCollection coll = db.getCollection("sessions");
+		DBObject allQuery = new BasicDBObject();
+		DBObject removeId = new BasicDBObject("_id", 0);
+		DBCursor cursor = coll.find(allQuery, removeId);
+		DBObject doc = cursor.next();
+		return doc;
+
+	}
+
+	public DBCollection updateSession() throws UnknownHostException {
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		DB db = mongoClient.getDB("sumit");
+		DBCollection coll = db.getCollection("sessions");
+
+		BasicDBObject newDocument = new BasicDBObject();
+		newDocument.append("$set", new BasicDBObject().append("kwh", 50.25));
+
+		BasicDBObject searchQuery = new BasicDBObject().append("id", "101");
+		coll.update(searchQuery, newDocument);
+		return coll;
+	}
+
 }

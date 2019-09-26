@@ -18,6 +18,18 @@
 		<description></description>
 		<servlet-class>VersionModule.StoreToken</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetSessionObject</servlet-name>
+		<display-name>GetSessionObject</display-name>
+		<description></description>
+		<servlet-class>SessionsModule.GetSessionObject</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateSession</servlet-name>
+		<display-name>UpdateSession</display-name>
+		<description></description>
+		<servlet-class>SessionsModule.UpdateSession</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetVersionDetails</servlet-name>
 		<url-pattern>/versions</url-pattern>
@@ -29,6 +41,14 @@
 	<servlet-mapping>
 		<servlet-name>StoreToken</servlet-name>
 		<url-pattern>/storeToken</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetSessionObject</servlet-name>
+		<url-pattern>/session</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateSession</servlet-name>
+		<url-pattern>/updateSession</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
